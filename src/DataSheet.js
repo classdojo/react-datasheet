@@ -101,7 +101,7 @@ export default class DataSheet extends PureComponent {
   }
 
   handlePaste(e) {
-    if (isEmpty(this.state.editing) || overrideEditingPaste) {
+    if (isEmpty(this.state.editing) || this.props.overrideEditingPaste) {
       const start = this.state.start;
 
       const parse = this.props.parsePaste || defaultParsePaste;
