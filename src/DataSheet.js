@@ -101,7 +101,7 @@ export default class DataSheet extends PureComponent {
   }
 
   handlePaste(e) {
-    if(isEmpty(this.state.editing)) {
+    if (isEmpty(this.state.editing) || overrideEditingPaste) {
       const start = this.state.start;
 
       const parse = this.props.parsePaste || defaultParsePaste;
@@ -245,7 +245,10 @@ export default class DataSheet extends PureComponent {
   onMouseDown(i, j) {
     let editing = (isEmpty(this.state.editing) || this.state.editing.i !== i || this.state.editing.j !== j)
       ? {} : this.state.editing;
-    this.setState({selecting: true, start:{i, j}, end:{i, j}, editing: editing, forceEdit: false});
+
+    const forceEdit = (this.props.forceEditOnClick === true);
+
+    this.setState({selecting: true, start:{i, j}, end:{i, j}, editing: editing, forceEdit: forceEdit});
 
     //Keep listening to mouse if user releases the mouse (dragging outside)
     document.addEventListener('mouseup', this.onMouseUp);
@@ -357,4 +360,6 @@ DataSheet.propTypes = {
   valueRenderer: PropTypes.func.isRequired,
   dataRenderer: PropTypes.func,
   parsePaste: PropTypes.func,
+  overrideEditingPaste: PropTypes.bool,
+  forceEditOnClick: PropTypes.bool,
 };
