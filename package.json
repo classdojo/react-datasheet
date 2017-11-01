@@ -1,6 +1,6 @@
 {
   "name": "@classdojo/react-datasheet",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Excel-like data grid for React",
   "repository": {
     "type": "git",
