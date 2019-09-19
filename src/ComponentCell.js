@@ -7,7 +7,7 @@ export default class ComponentCell extends PureComponent {
     this.state = { updated: false };
   }
 
-  componentWillUpdate(nextProps) {
+  UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ updated: true });
       this.timeout = setTimeout(() => {
